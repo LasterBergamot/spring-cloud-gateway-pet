@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: double-gateway
+
+server:
+  port: 8082

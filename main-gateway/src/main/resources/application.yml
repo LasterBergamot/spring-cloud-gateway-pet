@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: integerModule
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/integer/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # 1 request/sec
+#                redis-rate-limiter.replenishRate: 10
+#                redis-rate-limiter.burstCapacity: 20
+#                redis-rate-limiter.requestedTokens: 1
+                # 1 request/min
+#                redis-rate-limiter.replenishRate: 1
+#                redis-rate-limiter.burstCapacity: 60
+#                redis-rate-limiter.requestedTokens: 60
+                # test
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 0
+                redis-rate-limiter.requestedTokens: 1
+                denyEmptyKey: false
+        - id: doubleModule
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/double/**
