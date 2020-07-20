@@ -8,8 +8,8 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class RateLimiterConfig {
 
-//    @Bean
-//    public KeyResolver userKeyResolver() {
-//        return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("user"));
-//    }
+    @Bean
+    public KeyResolver userKeyResolver() {
+        return exchange -> Mono.just("1");
+    }
 }

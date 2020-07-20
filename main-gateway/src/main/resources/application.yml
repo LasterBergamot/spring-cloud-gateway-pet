@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  data:
+    redis:
+      host: 192.168.99.100
+      port: 6379
   cloud:
     gateway:
       routes:
@@ -22,10 +26,14 @@ spring:
 #                redis-rate-limiter.requestedTokens: 60
                 # test
                 redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 0
+                redis-rate-limiter.burstCapacity: 1
                 redis-rate-limiter.requestedTokens: 1
                 denyEmptyKey: false
         - id: doubleModule
           uri: http://localhost:8082/
           predicates:
             - Path=/double/**
+
+logging:
+  level:
+    org.springframework: DEBUG
